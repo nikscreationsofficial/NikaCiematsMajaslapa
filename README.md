@@ -1,2 +1,2 @@
-# NikaCiematsM-jaslapa
+# NikaCiematsMajaslapa
 Nika Ciemats Oficiālā Mājaslapa
