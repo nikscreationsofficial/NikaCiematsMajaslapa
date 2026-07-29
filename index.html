@@ -1,50 +1,222 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-    <link rel="icon" type="image/png" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nika Ciemats | Discord Komūna</title>
+    <title>Nika Ciemats | Latviešu Draudzīgākā Discord Komūna</title>
+    <!-- Favicon piesaiste, ko augšupielādēji -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <style>
+        /* Pamata iestatījumi un fona krāsa no tavas skices */
         body {
-            background-color: #0f111a;
+            background-color: #121212;
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            padding: 50px 20px;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #161925;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            border: 1px solid #23283d;
+
+        /* Navigācijas josla (Header) */
+        header {
+            background-color: #000000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
         }
-        h1 { color: #5865F2; margin-bottom: 10px; }
-        p { color: #a3a6b4; font-size: 18px; line-height: 1.6; }
-        .btn {
-            display: inline-block;
-            background-color: #5865F2;
-            color: white;
-            padding: 15px 30px;
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Mazais logo kreisajā augšējā stūrī */
+        .logo-small {
+            height: 32px;
+            width: auto;
+        }
+
+        /* Augšējā izvēlne */
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #ffffff;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            margin-top: 25px;
-            transition: 0.3s;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
         }
-        .btn:hover { background-color: #4752c4; transform: scale(1.05); }
+
+        nav a:hover {
+            color: #5865F2; /* Discord zilais tonis akcentam uz hover */
+        }
+
+        /* Galvenā sekcija (Hero Section) */
+        .hero {
+            display: flex;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            box-sizing: border-box;
+        }
+
+        /* Teksta bloks kreisajā pusē */
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        /* "Latviešu" vārds ar sarkano akcentu */
+        .highlight-red {
+            color: #bd1a22; /* Tumši sarkanais no tavas skices */
+            font-size: 42px;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        /* "DRAUDZĪGĀKĀ" ar pasvītrojumu */
+        .title-main {
+            font-size: 56px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 5px 0;
+            line-height: 1.1;
+            letter-spacing: 0.5px;
+        }
+
+        .underline-bold {
+            border-bottom: 5px solid #ffffff;
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+
+        /* "Discord Komūna" */
+        .title-sub {
+            font-size: 46px;
+            font-weight: 700;
+            margin: 10px 0 30px 0;
+        }
+
+        /* Lielā poga "PIEVIENOTIES TAGAD!" */
+        .btn-join {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 16px 45px;
+            font-size: 20px;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 12px;
+            text-transform: uppercase;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-join:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.03);
+        }
+
+        /* Labā puse - Lielais Ūsu/Logotipa attēls */
+        .hero-image-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-logo-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 350px;
+        }
+
+        /* RESPONSIVE SCALING - AUTOMĀTISKA PIELĀGOŠANĀS TELEFONIEM */
+        @media (max-width: 850px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                flex-direction: column-reverse; /* Telefonā bilde būs augšā, teksts apakšā */
+                text-align: center;
+                margin: 40px auto;
+                padding: 0 20px;
+                gap: 30px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .highlight-red { font-size: 32px; }
+            .title-main { font-size: 38px; }
+            .title-sub { font-size: 34px; }
+            .btn-join { width: 100%; box-sizing: border-box; font-size: 18px; }
+            .main-logo-img { max-height: 220px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Nika Ciemats</h1>
-        <p>Latviešu draudzīgākā Discord komūna. Šeit mēs rīkojam spēļu vakarus, pasākumus un vienkārši labi pavadām laiku.</p>
-        <p><i>Mājaslapa šobrīd tiek atjaunināta uz jaunu, jaudīgu sistēmu...</i></p>
-        <a href="https://discord.gg" class="btn" target="_blank">Pievienoties Discord</a>
-    </div>
+
+    <!-- AUGŠĒJĀ NAVIGĀCIJAS JOSLA -->
+    <header>
+        <div class="logo-area">
+            <!-- ŠEIT ieliec saiti uz mazo logo stūrī, ja vēlies (šobrīd izmanto tavu favicon) -->
+            <img src="favicon.png" alt="Logo" class="logo-small">
+        </div>
+        <nav>
+            <a href="#jaunumi">Jaunumi</a>
+            <a href="#atbalsts">Atbalsts</a>
+            <a href="#ziedojums">Ziedojums</a>
+            <a href="#noderigi">Noderīgi</a>
+            <a href="#pasakumi">Pasākumi</a>
+            <a href="#par-mums">Par Mums</a>
+            <a href="#statuss">Statuss</a>
+        </nav>
+    </header>
+
+    <!-- GALVENĀ LAPA (HERO SECTION) -->
+    <main class="hero">
+        
+        <!-- Kreisā puse ar tekstiem -->
+        <div class="hero-text">
+            <div class="highlight-red">Latviešu</div>
+            <div class="title-main">
+                <span class="underline-bold">DRAUDZĪGĀKĀ</span>
+            </div>
+            <div class="title-sub">Discord Komūna</div>
+            
+            <!-- ŠEIT ieraksti savu Discord uzaicinājuma saiti starp pēdiņām href="" -->
+            <a href="https://discord.gg" class="btn-join" target="_blank">Pievienoties Tagad!</a>
+        </div>
+
+        <!-- Labā puse ar lielo logotipu -->
+        <div class="hero-image-area">
+            <!-- ŠEIT iekopē sava lielā baltā ūsu logo attēla saiti (no Discord vai GitHub) -->
+            <img src="https://cdn.discordapp.com/attachments/1480649338983284955/1532112791421321277/nc_priecigs.png?ex=6a6baaba&is=6a6a593a&hm=6956b90cc711c3a0f7cff4ea32a456022b27819957280ee4f5093405d7e794f8&" alt="Mister Niks Logo" class="main-logo-img">
+        </div>
+
+    </main>
+
 </body>
 </html>
