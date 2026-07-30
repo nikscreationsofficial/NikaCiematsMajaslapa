@@ -7,17 +7,37 @@
     <link rel="icon" type="image/png" href="favicon.png">
     
     <style>
-        /* Fona krāsa precīzi #202020 kā prasīji */
+        /* PAMATA IESTATĪJUMI */
         body {
             background-color: #202020;
             color: #ffffff;
-            font-family: 'Arial Black', 'Arial', sans-serif; /* Resni, izteiksmīgi burti kā skicē */
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
 
-        /* Navigācijas josla (Header) - Melna, fiksēta augšā */
+        /* VIOLETAIS NEONA PLEĶIS (Kustas līdzi pelei) */
+        #glow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(138,43,226,0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, border-radius 0.5s;
+        }
+
+        .container-global {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* NAVIGĀCIJAS JOSLA */
         header {
             background-color: #000000;
             height: 70px;
@@ -28,7 +48,6 @@
             box-sizing: border-box;
         }
 
-        /* Mazais logo kreisajā malā */
         .logo-left-container {
             position: absolute;
             left: 40px;
@@ -41,11 +60,10 @@
             width: auto;
         }
 
-        /* Centrētā izvēlne tieši tāpat kā attēlā */
         nav {
             display: flex;
             gap: 35px;
-            margin: 0 auto; /* Šis nocentrē visu pogu bloku pa vidu */
+            margin: 0 auto;
         }
 
         nav a {
@@ -54,19 +72,16 @@
             font-weight: 900;
             font-size: 14px;
             text-transform: uppercase;
-            font-family: 'Arial', sans-serif;
             letter-spacing: 0.5px;
             transition: opacity 0.2s;
         }
 
-        nav a:hover {
-            opacity: 0.7;
-        }
+        nav a:hover { opacity: 0.7; }
 
-        /* Galvenais satura izkārtojums (Hero) */
+        /* HERO SEKCIJA */
         .hero-container {
             max-width: 1200px;
-            margin: 120px auto 0 auto;
+            margin: 60px auto 40px auto;
             padding: 0 60px;
             display: flex;
             align-items: center;
@@ -74,22 +89,20 @@
             box-sizing: border-box;
         }
 
-        /* Kreisā puse ar tekstiem */
         .hero-text-block {
             flex: 1;
             text-align: left;
         }
 
-        /* "Latviešu" ar sarkano krāsu un biezajiem burtiem */
         .text-latviesu {
             color: #b71c1c; 
             font-size: 52px;
             font-weight: 900;
             line-height: 1;
             margin: 0;
+            font-family: 'Arial Black', sans-serif;
         }
 
-        /* "DRAUDZĪGĀKĀ" ar biezāko balto līniju apakšā */
         .text-draudzigaka {
             font-size: 64px;
             font-weight: 900;
@@ -97,20 +110,52 @@
             line-height: 1.1;
             margin: 5px 0;
             display: inline-block;
-            border-bottom: 7px solid #ffffff; /* Izteiksmīga līnija apakšā */
+            border-bottom: 7px solid #ffffff;
             padding-bottom: 5px;
+            font-family: 'Arial Black', sans-serif;
         }
 
-        /* "Discord Komūna" */
         .text-komuna {
             font-size: 58px;
             font-weight: 900;
             line-height: 1.1;
             margin: 15px 0 40px 0;
+            font-family: 'Arial Black', sans-serif;
         }
 
-        /* Baltā poga "PIEVIENOTIES TAGAD!" ar noapaļotiem stūriem */
+        /* POGA AR KUSTĪGO VIOLETO RĀMĪTI */
+        .btn-container {
+            position: relative;
+            display: inline-block;
+            padding: 3px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .btn-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, #8a2be2);
+            animation: rotateGlow 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-container:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .btn-join-now {
+            position: relative;
             display: inline-block;
             background-color: #ffffff;
             color: #000000;
@@ -118,17 +163,12 @@
             font-size: 22px;
             font-weight: 900;
             text-decoration: none;
-            border-radius: 20px; /* Noapaļotie stūri pēc skices */
+            border-radius: 17px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: transform 0.2s;
+            z-index: 2;
         }
 
-        .btn-join-now:hover {
-            transform: scale(1.03);
-        }
-
-        /* Labā puse - Lielais ūsu logotips */
         .hero-image-block {
             flex: 1;
             display: flex;
@@ -139,10 +179,98 @@
         .large-logo-img {
             max-width: 100%;
             height: auto;
-            width: 420px; /* Precīzs izmērs, lai atbilstu proporcijām */
+            width: 420px;
         }
 
-        /* MOBILĀS VERSIJAS AUTOMĀTISKAIS SCALING */
+        /* VIĻŅOTAIS SADALĪTĀJS */
+        .wave-divider {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 40px;
+        }
+
+        /* APRAKSTOŠIE KVADRĀTIŅI (BOXES) */
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .info-box {
+            background-color: #1a1a1a;
+            border: 2px solid #333333;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Funkcija: Zoom un spīdīgs balts nekustīgs rāmītis */
+        .info-box:hover {
+            transform: scale(1.03);
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .info-box.row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .box-icon {
+            width: 80px;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .box-text {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: left;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        /* VIRSRAKSTI */
+        .section-title {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 60px 0 30px 0;
+            letter-spacing: 1px;
+        }
+
+        /* SALĪDZINĀŠANAS TABULA */
+        .comparison-container {
+            background-color: #1a1a1a;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .comparison-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        /*TUKŠAIS APRAKŠĒJAIS LAUKUMS (FOOTER) */
+        .footer-dark-zone {
+            background-color: #171717;
+            height: 400px;
+            margin-top: 60px;
+        }
+
+        /* MOBILĀS VERSIJAS PIELĀGOŠANA (AUTOMATIC SCALING) */
         @media (max-width: 950px) {
             header {
                 height: auto;
@@ -150,81 +278,67 @@
                 flex-direction: column;
                 gap: 15px;
             }
-
-            .logo-left-container {
-                position: static;
-                margin-bottom: 5px;
-            }
-
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px 25px;
-            }
-
+            .logo-left-container { position: static; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
             .hero-container {
                 flex-direction: column-reverse;
-                margin-top: 40px;
-                padding: 0 20px;
+                margin-top: 30px;
                 text-align: center;
-                gap: 40px;
+                gap: 30px;
             }
-
-            .hero-text-block {
-                text-align: center;
-            }
-
-            .text-latviesu { font-size: 38px; }
-            .text-draudzigaka { font-size: 44px; border-bottom-width: 5px; }
-            .text-komuna { font-size: 40px; margin-bottom: 30px; }
-            .btn-join-now { width: 100%; box-sizing: border-box; font-size: 18px; padding: 15px; }
-            .large-logo-img { width: 280px; }
+            .hero-text-block { text-align: center; }
+            .text-latviesu { font-size: 36px; }
+            .text-draudzigaka { font-size: 42px; }
+            .text-komuna { font-size: 38px; }
+            .btn-container, .btn-join-now { width: 100%; box-sizing: border-box; text-align: center; }
+            .large-logo-img { width: 260px; }
+            .info-box, .info-box.row-reverse { flex-direction: column; text-align: center; padding: 20px; }
+            .box-text { text-align: center; }
+            .comparison-container { flex-direction: column; padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGĀCIJAS JOSLA (HEADER) -->
-    <header>
-        <div class="logo-left-container">
-            <!-- 1. ATTĒLS: Mazais ūsu logo augšējā kreisajā stūrī -->
-            <img src="https://cdn.discordapp.com/attachments/1480649338983284955/1531295004667019384/Mister_Niks_Oficialais_Logo_NOBG.png?ex=6a6b541b&is=6a6a029b&hm=1d5937d12cb2af8aaa2e066fc91e7bfc9a229914e1f1694fc4325d61a881fdc7&" alt="Logo" class="logo-small">
-        </div>
-        
-        <nav>
-            <a href="#jaunumi">Jaunumi</a>
-            <a href="#atbalsts">Atbalsts</a>
-            <a href="#ziedojums">Ziedojums</a>
-            <a href="#noderigi">Noderīgi</a>
-            <a href="#pasakumi">Pasākumi</a>
-            <a href="#par-mums">Par Mums</a>
-            <a href="#statuss">Statuss</a>
-        </nav>
-    </header>
+    <!-- VIOLETAIS FONDS (Sekos pelei) -->
+    <div id="glow-bg"></div>
 
-    <!-- HERO SEKCIJA -->
-    <main class="hero-container">
-        
-        <!-- Teksta puse -->
-        <div class="hero-text-block">
-            <h1 class="text-latviesu">Latviešu</h1>
-            <div class="text-draudzigaka">DRAUDZĪGĀKĀ</div>
-            <h2 class="text-komuna">Discord Komūna</h2>
-            
-            <!-- SAITE: Ieliec savu Discord ielūgumu starp pēdiņām href="" -->
-            <a href="https://discord.gg" class="btn-join-now" target="_blank">Pievienoties Tagad!</a>
-        </div>
+    <div class="container-global">
 
-        <!-- Attēla puse -->
-        <div class="hero-image-block">
-            <!-- 2. ATTĒLS: Lielais baltais ūsu logo labajā pusē -->
-            <img src="https://cdn.discordapp.com/attachments/1480649338983284955/1532112791421321277/nc_priecigs.png?ex=6a6baaba&is=6a6a593a&hm=6956b90cc711c3a0f7cff4ea32a456022b27819957280ee4f5093405d7e794f8&" alt="Mister Niks Lielais Logo" class="large-logo-img">
-        </div>
+        <!-- NAVIGĀCIJAS JOSLA -->
+        <header>
+            <div class="logo-left-container">
+                <!-- ieliec attēlu šeit (Mazais logo kreisajā augšējā stūrī) -->
+                <img src="favicon.png" alt="Logo" class="logo-small">
+            </div>
+            <nav>
+                <a href="#jaunumi">Jaunumi</a>
+                <a href="#atbalsts">Atbalsts</a>
+                <a href="#ziedojums">Ziedojums</a>
+                <a href="#noderigi">Noderīgi</a>
+                <a href="#pasakumi">Pasākumi</a>
+                <a href="#par-mums">Par Mums</a>
+                <a href="#statuss">Statuss</a>
+            </nav>
+        </header>
 
-    </main>
+        <!-- HERO SEKCIJA -->
+        <main class="hero-container">
+            <div class="hero-text-block">
+                <h1 class="text-latviesu">Latviešu</h1>
+                <div class="text-draudzigaka">DRAUDZĪGĀKĀ</div>
+                <h2 class="text-komuna">Discord Komūna</h2>
+                
+                <div class="btn-container">
+                    <!-- SAITE: Ieliec savu Discord ielūgumu šeit (iekš href="") -->
+                    <a href="https://discord.gg" class="btn-join-now" target="_blank">Pievienoties Tagad!</a>
+                </div>
+            </div>
 
-</body>
-</html>
+            <div class="hero-image-block">
+                <!-- ieliec attēlu šeit (Lielais baltais ūsu logo labajā pusē) -->
+                <img src="favicon.png" alt="Mister Niks Lielais Logo" class="large-logo-img">
+            </div>
+        </main>
 
-</body>
-</html>
+        <!-- VIĻŅOTAIS SADALĪTĀJS -->
